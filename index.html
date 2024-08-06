@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Comparação de Dados dos Alunos</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .container {
+            margin: 20px;
+        }
+
+        /* Animações */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .slide-up {
+            animation: slideUp 0.5s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(10px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    // Load the Visualization API and the corechart package.
+    google.charts.load('current', {'packages':['corechart']});
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawCharts);
+
+    // Callback that creates and populates data tables and draws the charts.
+    function drawCharts() {
+        // Create data table for Dia 1
+        var dataDia1 = new google.visualization.DataTable();
+        dataDia1.addColumn('string', 'Métrica');
+        dataDia1.addColumn('number', 'Dia 1');
+        dataDia1.addRows([
+            ['Estatura', 1.72], // Substitua com a média real
+            ['Peso', 81.47],    // Substitua com a média real
+            ['IMC', 27.25],     // Substitua com a média real
+            ['PAS', 128.37],       // Substitua com a média real
+            ['PAD', 77.80],        // Substitua com a média real
+            ['FC Rep', 77.77]      // Substitua com a média real
+        ]);
+
+        // Create data table for Dia 2
+        var dataDia2 = new google.visualization.DataTable();
+        dataDia2.addColumn('string', 'Métrica');
+        dataDia2.addColumn('number', 'Dia 2');
+        dataDia2.addRows([
+            ['Estatura', 1.72], // Substitua com a média real
+            ['Peso', 66.17],    // Substitua com a média real
+            ['IMC', 21.85],     // Substitua com a média real
+            ['PAS', 96.91],       // Substitua com a média real
+            ['PAD', 55.23],        // Substitua com a média real
+            ['FC Rep', 57.95]      // Substitua com a média real
+        ]);
+
+        // Set chart options
+        var options = {
+            'title': 'Médias da Turma',
+            'width': 500,
+            'height': 400,
+            'chartArea': {'width': '50%'},
+            'hAxis': {
+                'title': 'Métricas',
+                'minValue': 0
+            },
+            'vAxis': {
+                'title': 'Valores'
+            }
+        };
+
+        // Instantiate and draw the charts.
+        var chartDia1 = new google.visualization.BarChart(document.getElementById('chart_div_dia1'));
+        chartDia1.draw(dataDia1, options);
+
+        var chartDia2 = new google.visualization.BarChart(document.getElementById('chart_div_dia2'));
+        chartDia2.draw(dataDia2, options);
+    }
+</script>
+</head>
+<body class="mx-4 bg-gradient-to-b from-slate-600 to-slate-200">
+  <div class="flex flex-col justify-center items-center text-center py-12 fade-in">
+      <h1 class="text-3xl font-bold text-white">Comparação de Dados dos Alunos</h1>
+
+      <div class="my-8 w-full max-w-4xl mx-auto">
+          <h2 class="text-xl font-semibold text-white mb-4">Dados do Dia 1</h2>
+          <table id="tabela-dia1" class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+              <thead class="bg-slate-500">
+                  <tr>
+                      <th class="py-2 px-4 text-left">Nome</th>
+                      <th class="py-2 px-4 text-left">Estatura (m)</th>
+                      <th class="py-2 px-4 text-left">Peso (kg)</th>
+                      <th class="py-2 px-4 text-left">IMC</th>
+                      <th class="py-2 px-4 text-left">PAS</th>
+                      <th class="py-2 px-4 text-left">PAD</th>
+                      <th class="py-2 px-4 text-left">FC Rep</th>
+                  </tr>
+              </thead>
+              <tbody class="bg-gray-100">
+                  <!-- Dados da tabela -->
+              </tbody>
+          </table>
+      </div>
+
+      <div class="my-8 w-full max-w-4xl mx-auto">
+          <h2 class="text-xl font-semibold text-white mb-4">Dados do Dia 2</h2>
+          <table id="tabela-dia2" class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+              <thead class="bg-slate-500">
+                  <tr>
+                      <th class="py-2 px-4 text-left">Nome</th>
+                      <th class="py-2 px-4 text-left">Estatura (m)</th>
+                      <th class="py-2 px-4 text-left">Peso (kg)</th>
+                      <th class="py-2 px-4 text-left">IMC</th>
+                      <th class="py-2 px-4 text-left">PAS</th>
+                      <th class="py-2 px-4 text-left">PAD</th>
+                      <th class="py-2 px-4 text-left">FC Rep</th>
+                  </tr>
+              </thead>
+              <tbody class="bg-gray-100">
+                  <!-- Dados da tabela -->
+              </tbody>
+          </table>
+      </div>
+  </div>
+
+  <div class="bg-white shadow-xl rounded-lg my-8 py-12 mx-auto max-w-5xl slide-up">
+      <h2 class="text-xl font-bold text-center text-gray-800">Média Geral da Turma:</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 justify-items-center my-8 px-4">
+          <div id="media-geral1" class="bg-gray-100 p-6 rounded-lg shadow-md text-gray-700 w-full">
+              <!-- Conteúdo do card #1 aqui -->
+          </div>
+          <div id="media-geral2" class="bg-gray-100 p-6 rounded-lg shadow-md text-gray-700 w-full">
+              <!-- Conteúdo do card #2 aqui -->
+          </div>
+      </div>
+  </div>
+
+  <div class="bg-white shadow-xl rounded-lg my-8 py-12 mx-auto max-w-5xl h-screen">
+      <h2 class="text-center text-xl font-bold ">Gráficos das Médias da Turma</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 justify-items-center px-4">
+          <div id="chart_div_dia1" class="w-full h-64">
+              <!-- Gráfico do Dia 1 -->
+          </div>
+          <div id="chart_div_dia2" class="w-full h-64">
+              <!-- Gráfico do Dia 2 -->
+          </div>
+      </div>
+  </div>
+
+    <script>
+        const alunos = [
+            {
+                nome: "Airton Wendel Junior", estatura1: 1.70, peso1: 69.70, imc1: 24.12, pas1: 127, pad1: 77, fcrep1: 68,
+                estatura2: 1.70, peso2: 69.70, imc2: 24.12, pas2: 124, pad2: 75, fcrep2: 67
+            },
+            {
+                nome: "Amanda Barros Barcellos", estatura1: 1.57, peso1: 52.40, imc1: 21.26, pas1: 112, pad1: 77, fcrep1: 84,
+                estatura2: 1.57, peso2: 0.00, imc2: 0.00, pas2: null, pad2: null, fcrep2: null
+            },
+            {
+                nome: "Ana Luiza Silveira Leite", estatura1: 1.58, peso1: 67.00, imc1: 26.84, pas1: 108, pad1: 69, fcrep1: 84,
+                estatura2: 1.58, peso2: 68.10, imc2: 27.28, pas2: 111, pad2: 69, fcrep2: 75
+            },
+            {
+                nome: "Bruno Ósio Jerônimo", estatura1: 1.75, peso1: 69.00, imc1: 22.53, pas1: 155, pad1: 87, fcrep1: 71,
+                estatura2: 1.75, peso2: 71.50, imc2: 23.35, pas2: 158, pad2: 85, fcrep2: 74
+            },
+            {
+                nome: "Gabrielli Marques Camboim", estatura1: 1.60, peso1: 47.10, imc1: 18.40, pas1: 122, pad1: 80, fcrep1: 74,
+                estatura2: 1.60, peso2: 47.40, imc2: 18.52, pas2: 118, pad2: 61, fcrep2: 81
+            },
+            {
+                nome: "George Lucas Gonzatto dos Santos", estatura1: 1.71, peso1: 96.50, imc1: 33.00, pas1: 158, pad1: 98, fcrep1: 132,
+                estatura2: 1.71, peso2: 0.00, imc2: 0.00, pas2: 163, pad2: 86, fcrep2: 123
+            },
+            {
+                nome: "Isadora Dutra Martins", estatura1: 1.63, peso1: 48.00, imc1: 18.07, pas1: 116, pad1: 73, fcrep1: 85,
+                estatura2: 1.63, peso2: 48.30, imc2: 18.18, pas2: 98, pad2: 60, fcrep2: 75
+            },
+            {
+                nome: "Joao Vitor Bauer Verzeletti", estatura1: 1.66, peso1: 73.20, imc1: 26.56, pas1: 133, pad1: 68, fcrep1: 62,
+                estatura2: 1.66, peso2: 0.00, imc2: 0.00, pas2: null, pad2: null, fcrep2: null
+            },
+            {
+                nome: "Julia Sopezack Cardoso", estatura1: 1.65, peso1: 67.80, imc1: 24.90, pas1: 138, pad1: 90, fcrep1: 83,
+                estatura2: 1.65, peso2: 67.00, imc2: 24.61, pas2: 129, pad2: 75, fcrep2: 61
+            },
+            {
+                nome: "Laura Keisman Gutier", estatura1: 1.61, peso1: 68.00, imc1: 26.23, pas1: 125, pad1: 82, fcrep1: 74,
+                estatura2: 1.61, peso2: 68.30, imc2: 26.35, pas2: 123, pad2: 73, fcrep2: 74
+            },
+            {
+                nome: "Leonardo Rocha dos Santos", estatura1: 0.00, peso1: 0.00, imc1: 0.00, pas1: 0, pad1: 0, fcrep1: 0,
+                estatura2: 0.00, peso2: 0.00, imc2: 0.00, pas2: 0, pad2: 0, fcrep2: 0
+            },
+            {
+                nome: "Luis Fernando da Luz Batista", estatura1: 1.79, peso1: 99.50, imc1: 31.05, pas1: 161, pad1: 93, fcrep1: 94,
+                estatura2: 1.79, peso2: 101.00, imc2: 31.52, pas2: 158, pad2: 87, fcrep2: 77
+            },
+            {
+                nome: "Maria Eduarda Pinheiro Bastos", estatura1: 1.70, peso1: 78.00, imc1: 26.99, pas1: 133, pad1: 88, fcrep1: 79,
+                estatura2: 1.70, peso2: 80.00, imc2: 27.68, pas2: 138, pad2: 81, fcrep2: 85
+            },
+            {
+                nome: "Melissa Ribeiro Rodrigues", estatura1: 1.53, peso1: 49.90, imc1: 21.32, pas1: 112, pad1: 76, fcrep1: 109,
+                estatura2: 1.53, peso2: 51.10, imc2: 21.83, pas2: 117, pad2: 70, fcrep2: 76
+            },
+            {
+                nome: "Nicolas Cardoso Nunes", estatura1: 1.82, peso1: 73.90, imc1: 22.31, pas1: 148, pad1: 75, fcrep1: 65,
+                estatura2: 1.82, peso2: 75.00, imc2: 22.64, pas2: 148, pad2: 79, fcrep2: 62
+            },
+            {
+                nome: "Nícolas Ramires de Barros", estatura1: 1.85, peso1: 178.00, imc1: 52.01, pas1: 158, pad1: 91, fcrep1: 70,
+                estatura2: 1.85, peso2: 176.00, imc2: 51.42, pas2: null, pad2: null, fcrep2: null
+            },
+            {
+                nome: "Paula Liane Marques de Oliveira", estatura1: 1.67, peso1: 81.50, imc1: 29.22, pas1: 120, pad1: 74, fcrep1: 73,
+                estatura2: 1.67, peso2: 81.10, imc2: 29.08, pas2: 113, pad2: 70, fcrep2: 93
+            },
+            {
+                nome: "Rafael Pires Oliveira", estatura1: 1.85, peso1: 128.00, imc1: 37.40, pas1: 131, pad1: 72, fcrep1: 79,
+                estatura2: 1.85, peso2: 128.40, imc2: 37.52, pas2: 139, pad2: 82, fcrep2: 90
+            },
+            {
+                nome: "Rafael Ramos dos Santos", estatura1: 1.82, peso1: 96.00, imc1: 28.98, pas1: null, pad1: null, fcrep1: null,
+                estatura2: 1.82, peso2: 98.50, imc2: 29.74, pas2: 127, pad2: 72, fcrep2: 76
+            },
+            {
+                nome: "Rodrigo Marins Correa da Silva", estatura1: 1.91, peso1: 127.00, imc1: 34.81, pas1: 174, pad1: 99, fcrep1: 95,
+                estatura2: 1.91, peso2: 127.20, imc2: 34.87, pas2: 168, pad2: 90, fcrep2: 86
+            },
+            {
+                nome: "Thalis Trisch", estatura1: 1.76, peso1: 55.80, imc1: 18.01, pas1: 135, pad1: 75, fcrep1: 59,
+                estatura2: 1.76, peso2: 0.00, imc2: 0.00, pas2: null, pad2: null, fcrep2: null
+            },
+            {
+                nome: "Valter Cristiano Mohr Goes", estatura1: 1.73, peso1: 76.40, imc1: 25.53, pas1: 117, pad1: 82, fcrep1: 85,
+                estatura2: 1.73, peso2: 0.00, imc2: 0.00, pas2: null, pad2: null, fcrep2: null
+            },
+            {
+                nome: "Aluno Anônimo", estatura1: 1.89, peso1: 89.62, imc1: 29.98, pas1: 141.21, pad1: 85.58, fcrep1: 86,
+                estatura2: 1.89, peso2: 97.04, imc2: 32.05, pas2: null, pad2: null, fcrep2: null
+            }
+        ];
+
+        function preencherTabela(dia) {
+            const tabela = document.querySelector(`#tabela-${dia} tbody`);
+            tabela.innerHTML = '';
+
+            alunos.forEach(aluno => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${aluno.nome}</td>
+                    <td>${dia === 'dia1' ? aluno.estatura1 : aluno.estatura2}</td>
+                    <td>${dia === 'dia1' ? aluno.peso1 : aluno.peso2}</td>
+                    <td>${dia === 'dia1' ? aluno.imc1 : aluno.imc2}</td>
+                    <td>${dia === 'dia1' ? aluno.pas1 : aluno.pas2}</td>
+                    <td>${dia === 'dia1' ? aluno.pad1 : aluno.pad2}</td>
+                    <td>${dia === 'dia1' ? aluno.fcrep1 : aluno.fcrep2}</td>
+                `;
+                tabela.appendChild(row);
+            });
+        }
+
+        function calcularMediaGeral() {
+            const medias = {
+                estatura: { dia1: 0, dia2: 0 },
+                peso: { dia1: 0, dia2: 0 },
+                imc: { dia1: 0, dia2: 0 },
+                pas: { dia1: 0, dia2: 0 },
+                pad: { dia1: 0, dia2: 0 },
+                fcrep: { dia1: 0, dia2: 0 }
+            };
+
+            let countDia1 = 0;
+            let countDia2 = 0;
+
+            alunos.forEach(aluno => {
+                if (aluno.estatura1 > 0) {
+                    medias.estatura.dia1 += aluno.estatura1;
+                    medias.peso.dia1 += aluno.peso1;
+                    medias.imc.dia1 += aluno.imc1;
+                    medias.pas.dia1 += aluno.pas1;
+                    medias.pad.dia1 += aluno.pad1;
+                    medias.fcrep.dia1 += aluno.fcrep1;
+                    countDia1++;
+                }
+                if (aluno.estatura2 > 0) {
+                    medias.estatura.dia2 += aluno.estatura2;
+                    medias.peso.dia2 += aluno.peso2;
+                    medias.imc.dia2 += aluno.imc2;
+                    medias.pas.dia2 += aluno.pas2;
+                    medias.pad.dia2 += aluno.pad2;
+                    medias.fcrep.dia2 += aluno.fcrep2;
+                    countDia2++;
+                }
+            });
+
+            for (let key in medias) {
+                medias[key].dia1 /= countDia1;
+                medias[key].dia2 /= countDia2;
+            }
+
+            document.getElementById('media-geral1').innerHTML = `
+                <p>Estatura (Dia 1): ${medias.estatura.dia1.toFixed(2)} m</p>
+                <p>Peso (Dia 1): ${medias.peso.dia1.toFixed(2)} kg</p>
+                <p>IMC (Dia 1): ${medias.imc.dia1.toFixed(2)}</p>
+                <p>PAS (Dia 1): ${medias.pas.dia1.toFixed(2)}</p>
+                <p>PAD (Dia 1): ${medias.pad.dia1.toFixed(2)}</p>
+                <p>FC Rep (Dia 1): ${medias.fcrep.dia1.toFixed(2)}</p>
+            `;
+
+            document.getElementById('media-geral2').innerHTML = `
+                <p>Estatura (Dia 2): ${medias.estatura.dia2.toFixed(2)} m</p>
+                <p>Peso (Dia 2): ${medias.peso.dia2.toFixed(2)} kg</p>
+                <p>IMC (Dia 2): ${medias.imc.dia2.toFixed(2)}</p>
+                <p>PAS (Dia 2): ${medias.pas.dia2.toFixed(2)}</p>
+                <p>PAD (Dia 2): ${medias.pad.dia2.toFixed(2)}</p>
+                <p>FC Rep (Dia 2): ${medias.fcrep.dia2.toFixed(2)}</p>
+            `;
+        }
+
+        preencherTabela('dia1');
+        preencherTabela('dia2');
+        calcularMediaGeral();
+    </script>
+</body>
+</html>
